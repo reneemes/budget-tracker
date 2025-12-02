@@ -19,12 +19,16 @@
       </div>
     </section>
 
-    <section class="main__add-property">
-      <h2 class="main__add-property--title">Add Income or Expenses</h2>
-      <form class="main__add-property--form" action="" method="post">
-        <button class="form__btn" onclick="displayFormSec('income')">Add Income</button>
-        <button class="form__btn form__btn--selected">Add Expenses</button>
-        <div class="main__add-property--income">
+    <section class="add-property">
+      <h2 class="add-property--title">Add Income or Expense</h2>
+      <form class="add-property--form" action="" method="post">
+        
+        <div >
+          <button type="button" class="form__btn" data-type="income">Add Income</button>
+          <button type="button" class="form__btn form__btn--selected" data-type="expense">Add Expenses</button>
+        </div>
+
+        <div class="add-property__income">
           <!-- Add income here -->
            <h3>Income</h3>
            <label for="income-description">Income Description:</label>
@@ -32,7 +36,7 @@
            <label for="income-amount">Bi-Weekly Income Amount:</label>
            <input type="number" name="income-amount" id="income-amount" />
         </div>
-        <div class="main__add-property--expense hidden">
+        <div class="add-property__expense hidden">
           <!-- Add expense here -->
            <h3>Expenses</h3>
            <label for="expense-description">Expense Description:</label>
@@ -48,6 +52,7 @@
     <a href="#">Social Media Images Here...</a>
     <p>Copyright</p>
   </footer>
-  <script type="module" src="budget.js"></script>
-</body>
+  <script type="module" src="script.js"></script>
+  <!-- <script src="script.js"></script>
+</body> -->
 </html>

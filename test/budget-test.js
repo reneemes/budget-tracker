@@ -1,5 +1,5 @@
 const { expect }  = require('chai');
-const Budget = require('../budget.js');
+const Budget = require('../class/budget.js');
 
 describe('constructor', function() {
   let user;

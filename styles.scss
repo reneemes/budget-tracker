@@ -6,6 +6,19 @@ $light-green: #BFCFBB;
   background-image: linear-gradient(to bottom right, $light-green, $primary-color);
 }
 
+@mixin btn {
+  border: none;
+  border-radius: 10px;
+  font-size: 1.25rem;
+  padding: 10px;
+}
+
+@mixin center-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 body {
   margin: 0;
   display: flex;
@@ -22,4 +35,21 @@ main {
 
 .header {
   background-color: $primary-color;
+}
+
+.add-property {
+  @include center-items;
+
+  &--form {
+    @include center-items;
+  }
+}
+
+.form__btn {
+  @include btn;
+
+  &--selected {
+    background-color: $dark-green;
+    color: white;
+  }
 }
