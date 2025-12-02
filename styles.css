@@ -5,7 +5,7 @@ body {
 }
 
 main {
-  background-image: linear-gradient(to bottom right, #BFCFBB, #8EA58C);
+  background-image: linear-gradient(to bottom right, #BFCFBB, white);
 }
 
 .hidden {

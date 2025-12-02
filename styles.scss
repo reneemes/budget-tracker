@@ -1,9 +1,13 @@
 $primary-color: #8EA58C;
 $dark-green: #344C3D;
-$light-green: #BFCFBB;
+$dark-medium-green: #738A6E;
+$light-medium-green: #BFCFBB;
+$light-green: #D9E5D8;
 
 @mixin gradient {
-  background-image: linear-gradient(to bottom right, $light-green, $primary-color);
+  background-image: linear-gradient(
+    to bottom right, $light-medium-green, white
+  );
 }
 
 @mixin btn {

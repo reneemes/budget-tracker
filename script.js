@@ -40,7 +40,6 @@ formSelectBtn.forEach(btn => {
     });
     this.classList.add('form__btn--selected');
 
-    // const choice = btn.textContent.includes('Income') ? 'income' : 'expense';
     const choice = btn.dataset.type;
     displayFormSec(choice);
   });
