@@ -1,4 +1,4 @@
-export default class Budget {
+class Budget {
   constructor(userName, income, expenses) {
     this.userName = userName;
     this.income = income;
@@ -54,3 +54,4 @@ export default class Budget {
 }
 
 // module.exports = Budget;
+export default Budget;

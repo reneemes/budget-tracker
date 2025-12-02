@@ -28,30 +28,6 @@ const user = new Budget(
   }
 );
 
-// const addIncomeSec = document.querySelector('.add-property__income');
-// const addExpenseSec = document.querySelector('.add-property__expense');
-
-// const formSelectBtn = document.querySelectorAll('.form__btn');
-
-// formSelectBtn.forEach( btn => {
-//   btn.addEventListener('click', function() {
-//     btn.forEach( b => {
-//       b.classList.remove('form__btn--selected');
-//     })
-//     this.classList.add('form__btn--selected');
-//   })
-// });
-
-// function displayFormSec(choice) {
-//   if (choice === 'income') {
-//     addIncomeSec.classList.remove('hidden');
-//     addExpenseSec.classList.add('hidden');
-//   } else {
-//     addIncomeSec.classList.add('hidden');
-//     addExpenseSec.classList.remove('hidden');
-//   }
-// }
-
 const addIncomeSec = document.querySelector('.add-property__income');
 const addExpenseSec = document.querySelector('.add-property__expense');
 
