@@ -13,7 +13,7 @@ class Budget {
     this.#addUpExpenses();
 
     this.totalBudget = this.totalIncome - this.totalExpenses;
-    return this.totalBudget;
+    return this.totalBudget.toFixed(2);
   }
 
   addIncome(description, amount) {
@@ -53,42 +53,4 @@ class Budget {
   }
 }
 
-const user = new Budget(
-  'Renee',
-  {
-    income1: {
-      description: 'Full-Time Job',
-      amount: 2115.38
-    },
-    income2: {
-      description: 'Weekend Job',
-      amount: 200.02
-    }
-  },
-  {
-    expense1: {
-      description: 'Rent',
-      amount: 1509.25,
-    },
-    expense2: {
-      description: 'Utilities',
-      amount: 105.50
-    },
-    expense3: {
-      description: 'Groceries',
-      amount: 520.25
-    }
-  }
-);
-
-console.log('UserName: ', user.userName);
-console.log('income: ', user.income);
-console.log('calculate total budget: ', user.calculateTotalBudget());
-user.calculateTotalBudget();
-console.log('total income: ', user.totalIncome);
-console.log('total expenses: ', user.totalExpenses);
-user.addIncome('Dog Walking', 100.00);
-user.addIncome('House Sitting', 150.00);
-console.log('expenses: ', user.expenses);
-user.addExpense('Hair Cut', 40.00);
-console.log('expenses: ', user.expenses);
+module.exports = Budget;
