@@ -3,9 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+  <title>Budget Tracker</title>
 </head>
 <body>
+  <header class="header">
+    <h1>Budget Tracker</h1>
+  </header>
+
+  <main class="main">
+    <section class="main__welcome">
+      <h2 class="main__welcome--title">Welcome userName</h2>
+      <div class="main__welcome--budget">
+        <!-- Budget displayed here -->
+      </div>
+    </section>
+
+    <section class="main__add-property">
+      <h2 class="main__add-property--title">Add Income or Expenses</h2>
+      <form class="main__add-property--form" action="" method="post">
+        <button class="form__btn" onclick="displayFormSec('income')">Add Income</button>
+        <button class="form__btn form__btn--selected">Add Expenses</button>
+        <div class="main__add-property--income">
+          <!-- Add income here -->
+           <h3>Income</h3>
+           <label for="income-description">Income Description:</label>
+           <input type="text" name="income-description" id="income-description" />
+           <label for="income-amount">Bi-Weekly Income Amount:</label>
+           <input type="number" name="income-amount" id="income-amount" />
+        </div>
+        <div class="main__add-property--expense hidden">
+          <!-- Add expense here -->
+           <h3>Expenses</h3>
+           <label for="expense-description">Expense Description:</label>
+           <input type="text" name="expense-description" id="expense-description" />
+           <label for="expense-amount">Monthly Expense Amount:</label>
+           <input type="number" name="expense-amount" id="expense-amount" />
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <a href="#">Social Media Images Here...</a>
+    <p>Copyright</p>
+  </footer>
   <script type="module" src="budget.js"></script>
 </body>
 </html>

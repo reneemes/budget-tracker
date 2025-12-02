@@ -1,0 +1,17 @@
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  background-image: linear-gradient(to bottom right, #BFCFBB, #8EA58C);
+}
+
+.hidden {
+  display: none;
+}
+
+.header {
+  background-color: #8EA58C;
+}/*# sourceMappingURL=styles.css.map */
