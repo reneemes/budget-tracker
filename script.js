@@ -31,7 +31,18 @@ const user = new Budget(
 const addIncomeSec = document.querySelector('.add-property__income');
 const addExpenseSec = document.querySelector('.add-property__expense');
 
+const welcomeText = document.querySelector('.welcome__title');
 const formSelectBtn = document.querySelectorAll('.btn-sec__btn');
+const budgetSection = document.querySelector('.welcome__budget');
+
+const incomeSubmitBtn = document.querySelector('.add-property__income--btn');
+const expenseSubmitBtn = document.querySelector('.add-property__expense--btn');
+
+welcomeText.textContent = `Welcome ${user.userName}`;
+budgetSection.insertAdjacentHTML('afterbegin', `
+  <p class='welcome__budget--text'>Your current budget:</p>
+  <p class='welcome__budget--total'>$${user.calculateTotalBudget()}</p>
+`);
 
 formSelectBtn.forEach(btn => {
   btn.addEventListener('click', function() {

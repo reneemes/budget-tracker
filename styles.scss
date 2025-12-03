@@ -29,10 +29,13 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  min-height: 100vh;
 }
 
 main {
   @include gradient;
+  // min-height: 80vh;
 }
 
 .header {
@@ -42,18 +45,95 @@ main {
   z-index: 1;
 }
 
+.welcome {
+  @include center-items;
+
+  &__title {
+    font-size: 2rem;
+  }
+
+  &__budget{
+    @include center-items;
+    text-align: center;
+
+    &--text {
+      font-size: 1.5rem;
+      margin: 10px 0 0;
+    }
+
+    &--total {
+      font-size: 3rem;
+      margin: 30px
+    }
+  }
+
+  &__doughnut {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: conic-gradient(
+      #e74c3c 0% 30%,
+      #2ecc71 30% 70%,
+      #f1c40f 70% 100%
+    )
+  }
+}
+
 .add-property {
   @include center-items;
+  margin: 20px 0;
+  background-color: whitesmoke;
 
   &--form {
     @include center-items;
+    width: 100%;
+
+    hr {
+      height: 0.1rem;
+      width: 100%;
+      background-color: black;
+    }
   }
 
   &__income,
   &__expense {
     @include center-items;
+    align-items: flex-start;
+    width: 70%;
+
+    &--title {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    &--btn {
+      @include btn;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 1.25rem;
+    }
+
+    input {
+      border: none;
+      padding: 5px;
+      width: 100%;
+      margin-bottom: 10px;
+      background-color: white;
+
+      // &:focus {
+        // border-color: $dark-green;
+        // outline: $dark-green;   
+      // }
+    }
   }
 }
+
+// .income-submit-btn,
+// .expense-submit-btn {
+//   @include btn;
+// }
 
 .btn-sec__btn {
   @include btn;
@@ -67,7 +147,10 @@ main {
 
 
 
-
+.footer {
+  @include center-items;
+  background-color: $light-green;
+}
 
 .hidden {
   display: none;
