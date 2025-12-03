@@ -12,9 +12,9 @@
   </header>
 
   <main class="main">
-    <section class="main__welcome">
-      <h2 class="main__welcome--title">Welcome userName</h2>
-      <div class="main__welcome--budget">
+    <section class="welcome">
+      <h2 class="welcome__title">Welcome userName</h2>
+      <div class="welcome__budget">
         <!-- Budget displayed here -->
       </div>
     </section>
@@ -23,26 +23,28 @@
       <h2 class="add-property--title">Add Income or Expense</h2>
       <form class="add-property--form" action="" method="post">
         
-        <div >
-          <button type="button" class="form__btn" data-type="income">Add Income</button>
-          <button type="button" class="form__btn form__btn--selected" data-type="expense">Add Expenses</button>
+        <div class="btn-sec">
+          <button type="button" class="btn-sec__btn" data-type="income">Add Income</button>
+          <button type="button" class="btn-sec__btn btn-sec__btn--selected" data-type="expense">Add Expenses</button>
         </div>
 
         <div class="add-property__income">
           <!-- Add income here -->
            <h3>Income</h3>
            <label for="income-description">Income Description:</label>
-           <input type="text" name="income-description" id="income-description" />
+           <input type="text" name="income-description" id="income-description" required/>
            <label for="income-amount">Bi-Weekly Income Amount:</label>
-           <input type="number" name="income-amount" id="income-amount" />
+           <input type="number" name="income-amount" id="income-amount" required/>
+           <button type="submit">Submit</button>
         </div>
         <div class="add-property__expense hidden">
           <!-- Add expense here -->
-           <h3>Expenses</h3>
+           <h3>Expense</h3>
            <label for="expense-description">Expense Description:</label>
-           <input type="text" name="expense-description" id="expense-description" />
+           <input type="text" name="expense-description" id="expense-description" required/>
            <label for="expense-amount">Monthly Expense Amount:</label>
-           <input type="number" name="expense-amount" id="expense-amount" />
+           <input type="number" name="expense-amount" id="expense-amount" required/>
+           <button type="submit">Submit</button>
         </div>
       </form>
     </section>

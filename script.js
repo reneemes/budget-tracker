@@ -31,14 +31,14 @@ const user = new Budget(
 const addIncomeSec = document.querySelector('.add-property__income');
 const addExpenseSec = document.querySelector('.add-property__expense');
 
-const formSelectBtn = document.querySelectorAll('.form__btn');
+const formSelectBtn = document.querySelectorAll('.btn-sec__btn');
 
 formSelectBtn.forEach(btn => {
   btn.addEventListener('click', function() {
     formSelectBtn.forEach(b => {
-      b.classList.remove('form__btn--selected');
+      b.classList.remove('btn-sec__btn--selected');
     });
-    this.classList.add('form__btn--selected');
+    this.classList.add('btn-sec__btn--selected');
 
     const choice = btn.dataset.type;
     displayFormSec(choice);
