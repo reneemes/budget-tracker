@@ -35,14 +35,24 @@ const welcomeText = document.querySelector('.welcome__title');
 const formSelectBtn = document.querySelectorAll('.btn-sec__btn');
 const budgetSection = document.querySelector('.welcome__budget');
 
+const incomeDescription = document.querySelector('#income-description');
+const incomeAmount = document.querySelector('#income-amount');
+
+const expenseDescription = document.querySelector('#expense-description');
+const expenseAmount = document.querySelector('#expense-amount');
+
 const incomeSubmitBtn = document.querySelector('.add-property__income--btn');
 const expenseSubmitBtn = document.querySelector('.add-property__expense--btn');
+
+const colors = ['#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#3498db'];
 
 welcomeText.textContent = `Welcome ${user.userName}`;
 budgetSection.insertAdjacentHTML('afterbegin', `
   <p class='welcome__budget--text'>Your current budget:</p>
   <p class='welcome__budget--total'>$${user.calculateTotalBudget()}</p>
 `);
+updateDoughnutChart();
+
 
 formSelectBtn.forEach(btn => {
   btn.addEventListener('click', function() {
@@ -64,4 +74,64 @@ function displayFormSec(choice) {
     addIncomeSec.classList.add('hidden');
     addExpenseSec.classList.remove('hidden');
   }
+}
+
+incomeSubmitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  let amount = Number(incomeAmount.value);
+  user.addIncome(incomeDescription.value, amount);
+  console.log(user.income);
+  updateBudgetDisplay();
+  updateDoughnutChart();
+})
+
+expenseSubmitBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  let amount = Number(expenseAmount.value);
+  user.addExpense(expenseDescription.value, amount);
+  console.log(user.expenses);
+  updateBudgetDisplay();
+  updateDoughnutChart();
+})
+
+function updateBudgetDisplay() {
+  const total = user.calculateTotalBudget();
+  const budgetEl = document.querySelector('.welcome__budget--total');
+  budgetEl.textContent = `$${total}`;
+}
+
+
+// Chart Logic
+function getExpensePercentages() {
+  const expenses = Object.values(user.expenses);
+  const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+
+  return expenses.map(e => ({
+    description: e.description,
+    amount: e.amount,
+    percent: total === 0 ? 0 : (e.amount / total) * 100
+  }));
+}
+
+
+
+function updateDoughnutChart() {
+  const sections = getExpensePercentages();
+  const chart = document.querySelector('.welcome__chart');
+
+  let gradient = 'conic-gradient(';
+  let currentStart = 0;
+
+  sections.forEach((sec, index) => {
+    const end = currentStart + sec.percent;
+    const color = colors[index % colors.length]; // cycle colors
+
+    gradient += `${color} ${currentStart}% ${end}%,`;
+    currentStart = end;
+  });
+
+  // remove last comma & close
+  gradient = gradient.slice(0, -1) + ')';
+
+  chart.style.background = gradient;
 }
