@@ -1,13 +1,12 @@
-$primary-color: #8EA58C;
-$dark-green: #344C3D;
-$dark-medium-green: #738A6E;
-$light-medium-green: #BFCFBB;
-$light-green: #D9E5D8;
-$muted-red: #D37F7E;
+$primary-color: #6A9EBE;
+$light-medium-green: #A0D4A6;
+$secondary-color: #a8dadc;
+$light-blue: #f1faee;
+$muted-red: #ED6E78;
 
 @mixin gradient {
   background-image: linear-gradient(
-    to bottom right, $light-medium-green, white
+    to bottom right, $secondary-color, white
   );
 }
 
@@ -16,7 +15,7 @@ $muted-red: #D37F7E;
   border-radius: 10px;
   font-size: 1.25rem;
   padding: 10px;
-  background-color: $light-medium-green;
+  background-color: $secondary-color;
   cursor: pointer;
 }
 
@@ -32,6 +31,7 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   min-height: 100vh;
+  font-family: "Montserrat Alternates", sans-serif;
 }
 
 main {
@@ -43,6 +43,14 @@ main {
   background-color: $primary-color;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
   z-index: 1;
+
+  &__title {
+    margin-bottom: 0;
+  }
+
+  &__subtitle {
+    margin-top: 0;
+  }
 }
 
 .welcome {
@@ -66,12 +74,6 @@ main {
       margin: 30px
     }
   }
-
-  &__chart {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-  }
 }
 
 .add-property {
@@ -86,7 +88,7 @@ main {
     hr {
       height: 0.1rem;
       width: 100%;
-      background-color: $dark-green;
+      background-color: $primary-color;
     }
   }
 
@@ -94,7 +96,7 @@ main {
   &__expense {
     @include center-items;
     align-items: flex-start;
-    width: 70%;
+    width: 80%;
 
     &--title {
       font-size: 1.5rem;
@@ -104,6 +106,10 @@ main {
     &--btn {
       @include btn;
       margin-bottom: 10px;
+
+      &:hover {
+        background-color: $primary-color;
+      }
     }
 
     label {
@@ -112,17 +118,13 @@ main {
 
     input {
       border: none;
+      border: 1px solid $primary-color;
       border-radius: 5px;
       padding: 5px;
       width: 100%;
       margin-bottom: 10px;
       background-color: white;
       font-size: 1rem;
-
-      // &:focus {
-        // border-color: $dark-green;
-        // outline: $dark-green;   
-      // }
     }
   }
 }
@@ -131,8 +133,7 @@ main {
   @include btn;
 
   &--selected {
-    background-color: $dark-green;
-    color: whitesmoke;
+    background-color: $primary-color;
   }
 }
 
@@ -150,15 +151,14 @@ main {
     border-collapse: collapse;
 
     &--td {
-      font-size: 1.25rem;
+      font-size: 1rem;
       padding: 10px;
     }
 
     th {
       text-align: left;
       font-size: 1.25rem;
-      background-color: $dark-green;
-      color: #ffffff;
+      background-color: $primary-color;
       padding: 10px;
     }
 
@@ -168,17 +168,18 @@ main {
     }
 
     tbody:nth-child(odd) {
-      background-color: $light-green;
+      background-color: $light-blue;
     }
 
     tr:hover {
-      background-color: $primary-color;
+      background-color: $secondary-color;
     }
 
     .edit-btn,
     .delete-btn {
-      border: 1px solid $primary-color;
+      border: none;
       border-radius: 8px;
+      background-color: $light-medium-green;
       padding: 5px;
       font-size: 1rem;
       cursor: pointer;
@@ -190,9 +191,13 @@ main {
   }
 }
 
+.expense-list {
+  margin-bottom: 40px;
+}
+
 .footer {
   @include center-items;
-  background-color: $light-green;
+  background-color: $primary-color;
 }
 
 .hidden {
