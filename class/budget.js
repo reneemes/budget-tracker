@@ -46,8 +46,32 @@ class Budget {
     return this.expenses;
   }
 
-  deleteIncome(income) {
+  editIncome(id, {description = null, amount = null} = {}) {
+    let x = this.income[`income${id}`];
+    if (description && amount) {
+      x.description = description;
+      x.amount = amount;
+    } else if (description) {
+      x.description = description;
+    } else if (amount) {
+      x.amount = amount;
+    } else {
+      return 'No Change';
+    }
+  }
 
+  editExpense(id, {description = null, amount = null} = {}) {
+    let x = this.expenses[`expense${id}`];
+    if (description && amount) {
+      x.description = description;
+      x.amount = amount;
+    } else if (description) {
+      x.description = description;
+    } else if (amount) {
+      x.amount = amount;
+    } else {
+      return 'No Change';
+    }
   }
 
   #addUpIncome() {

@@ -104,64 +104,66 @@ function updateBudgetDisplay() {
   budgetEl.textContent = `$${total}`;
 }
 
-// Chart Logic
-// function getExpensePercentages() {
-//   const expenses = Object.values(user.expenses);
-//   const total = expenses.reduce((acc, e) => {
-//     return acc = acc + e;
-//   }, 0);
-
-//   return expenses.map(e => ({
-//     description: e.description,
-//     amount: e.amount,
-//     percent: total === 0 ? 0 : (e.amount / total) * 100
-//   }));
-// }
-
-// function updatePieChart() {
-//   console.log('HERE <><><>')
-//   const sections = getExpensePercentages();
-//   const chart = document.querySelector('.welcome__chart');
-
-//   let gradient = 'conic-gradient(';
-//   let currentStart = 0;
-
-//   sections.forEach((sec, index) => {
-//     const end = currentStart + sec.percent;
-//     const color = colors[index % colors.length];
-
-//     gradient += `${color} ${currentStart}% ${end}%,`;
-//     currentStart = end;
-//   });
-
-//   // remove last comma & close
-//   gradient = gradient.slice(0, -1) + ')';
-
-//   chart.style.background = gradient;
-// }
 const editBtn = document.querySelectorAll('.edit-btn');
 const deleteBtn = document.querySelectorAll('.delete-btn');
 // Table Logic
-const incomeVal = Object.values(user.income);
-incomeVal.forEach(income => {
-  incomeTable.insertAdjacentHTML('beforeend', `
-    <tr class='income-list__table--tr' id='${income.id}'>
-      <td class='income-list__table--td'>${income.description}</td>
-      <td class='income-list__table--td'>$${income.amount.toFixed(2)}</td>
-      <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
-    </tr>
-  `);
-})
+function setupTableRows() {
+  const incomeVal = Object.values(user.income);
+  incomeVal.forEach(income => {
+    incomeTable.insertAdjacentHTML('beforeend', `
+      <tr class='income-list__table--tr' id='${income.id}'>
+        <td class='income-list__table--td'>${income.description}</td>
+        <td class='income-list__table--td'>$${income.amount.toFixed(2)}</td>
+        <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
+      </tr>
+    `);
+  })
 
-const expenseVal = Object.values(user.expenses);
-expenseVal.forEach(expense => {
-  expenseTable.insertAdjacentHTML('beforeend', `
-    <tr class='expense-list__table--tr' id='${expense.id}'>
-      <td class='expense-list__table--td'>${expense.description}</td>
-      <td class='expense-list__table--td'>$${expense.amount.toFixed(2)}</td>
-      <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
-    </tr>
-  `);
-})
+  const expenseVal = Object.values(user.expenses);
+  expenseVal.forEach(expense => {
+    expenseTable.insertAdjacentHTML('beforeend', `
+      <tr class='expense-list__table--tr' id='${expense.id}'>
+        <td class='expense-list__table--td'>${expense.description}</td>
+        <td class='expense-list__table--td'>$${expense.amount.toFixed(2)}</td>
+        <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
+      </tr>
+    `);
+  })
+}
 
-window.onload = populateData();
+// Attach the eventListener after the table row populates
+incomeTable.addEventListener('click', (e) => {
+  if (e.target.classList.contains('edit-btn')) {
+    const row = e.target.closest('tr');
+    const id = row.id;
+    console.log('Edit income:', id);
+    user.editIncome(id, {});
+  }
+
+  if (e.target.classList.contains('delete-btn')) {
+    const row = e.target.closest('tr');
+    const id = row.id;
+    console.log('Delete expense:', id);
+  }
+});
+
+expenseTable.addEventListener('click', (e) => {
+  if (e.target.classList.contains('edit-btn')) {
+    const row = e.target.closest('tr');
+    const id = row.id;
+    console.log('Edit expense:', id);
+    user.editExpense(id, {})
+  }
+
+  if (e.target.classList.contains('delete-btn')) {
+    const row = e.target.closest('tr');
+    const id = row.id;
+    console.log('Delete expense:', id);
+  }
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  populateData();
+  setupTableRows();
+});

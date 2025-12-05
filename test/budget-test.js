@@ -133,6 +133,47 @@ describe('constructor', function() {
     );
   });
 
+  it('should edit and existing income', function() {
+    user.editIncome(2, {description: 'Dog Sitting'});
+    expect(user.income).to.deep.equal(
+      {
+        income1: {
+          id: 1,
+          description: 'Full-Time Job',
+          amount: 2115.38
+        },
+        income2: {
+          id: 2,
+          description: 'Dog Sitting',
+          amount: 200.02
+        }
+      }
+    )
+  });
+
+  it('should edit and existing expense', function() {
+    user.editExpense(1, {amount: 1410.25});
+    expect(user.expenses).to.deep.equal(
+      {
+        expense1: {
+          id: 1,
+          description: 'Rent',
+          amount: 1410.25,
+        },
+        expense2: {
+          id: 2,
+          description: 'Utilities',
+          amount: 105.50
+        },
+        expense3: {
+          id: 3,
+          description: 'Groceries',
+          amount: 520.25
+        }
+      }
+    )
+  });
+
   // Sad Path Tests:
   // Income
   it('sad path - handles a negative income amount', function() {
