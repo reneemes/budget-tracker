@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
-  <title>Budget Tracker</title>
+  <title>Bill Buddy</title>
 </head>
 <body>
   <header class="header">
-    <h1>Budget Tracker</h1>
+    <h1>Bill Buddy</h1>
+    <p>A Budget Tracking App</p>
   </header>
 
   <main class="main">
@@ -16,15 +17,15 @@
       <h2 class="welcome__title"></h2>
       <div class="welcome__budget">
         <!-- Budget displayed here -->
-        <div class="welcome__chart">
+        <!-- <div class="welcome__chart"> -->
           <!-- <div class="welcome__doughnut--inner"></div> -->
-        </div>
+        <!-- </div> -->
       </div>
     </section>
 
     <section class="add-property">
       <h2 class="add-property--title">Add Income or Expense</h2>
-      <form class="add-property--form" action="" method="">
+      <form class="add-property--form" action="" method="post">
         
         <div class="btn-sec">
           <button type="button" class="btn-sec__btn" data-type="income">Add Income</button>
@@ -55,8 +56,9 @@
     <section class="income-list">
       <h2 class="income-list__title">Income</h2>
       <table class="income-list__table">
-        <tr>
-          <td></td>
+        <tr class="income-list__table--tr">
+          <th class="income-list__table--description">Description</th>
+          <th class="income-list__table--amount" colspan="2">Amount</th>
         </tr>
       </table>
     </section>
@@ -65,7 +67,8 @@
       <h2 class="expense-list__title">Expenses</h2>
       <table class="expense-list__table">
         <tr>
-          <td></td>
+          <th>Description</th>
+          <th colspan="2">Amount</th>
         </tr>
       </table>
     </section>

@@ -63,7 +63,7 @@ main {
 .add-property--form hr {
   height: 0.1rem;
   width: 100%;
-  background-color: black;
+  background-color: #344C3D;
 }
 .add-property__income, .add-property__expense {
   display: flex;
@@ -90,10 +90,12 @@ main {
 }
 .add-property__income input, .add-property__expense input {
   border: none;
+  border-radius: 5px;
   padding: 5px;
   width: 100%;
   margin-bottom: 10px;
   background-color: white;
+  font-size: 1rem;
 }
 
 .btn-sec__btn {
@@ -107,6 +109,63 @@ main {
 .btn-sec__btn--selected {
   background-color: #344C3D;
   color: whitesmoke;
+}
+
+.income-list,
+.expense-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.income-list__title,
+.expense-list__title {
+  font-size: 2rem;
+}
+.income-list__table,
+.expense-list__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.income-list__table--td,
+.expense-list__table--td {
+  font-size: 1.25rem;
+  padding: 10px;
+}
+.income-list__table th,
+.expense-list__table th {
+  text-align: left;
+  font-size: 1.25rem;
+  background-color: #344C3D;
+  color: #ffffff;
+  padding: 10px;
+}
+.income-list__table tbody,
+.expense-list__table tbody {
+  width: 100%;
+  background-color: white;
+}
+.income-list__table tbody:nth-child(odd),
+.expense-list__table tbody:nth-child(odd) {
+  background-color: #D9E5D8;
+}
+.income-list__table tr:hover,
+.expense-list__table tr:hover {
+  background-color: #8EA58C;
+}
+.income-list__table .edit-btn,
+.income-list__table .delete-btn,
+.expense-list__table .edit-btn,
+.expense-list__table .delete-btn {
+  border: 1px solid #8EA58C;
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.income-list__table .delete-btn,
+.expense-list__table .delete-btn {
+  background-color: #D37F7E;
 }
 
 .footer {

@@ -9,24 +9,29 @@ describe('constructor', function() {
       'Jane',
       {
         income1: {
+          id: 1,
           description: 'Full-Time Job',
           amount: 2115.38
         },
         income2: {
+          id: 2,
           description: 'Weekend Job',
           amount: 200.02
         }
       },
       {
         expense1: {
+          id: 1,
           description: 'Rent',
           amount: 1509.25,
         },
         expense2: {
+          id: 2,
           description: 'Utilities',
           amount: 105.50
         },
         expense3: {
+          id: 3,
           description: 'Groceries',
           amount: 520.25
         }
@@ -48,10 +53,12 @@ describe('constructor', function() {
     expect(user.income).to.deep.equal(
       {
         income1: {
+          id: 1,
           description: 'Full-Time Job',
           amount: 2115.38
         },
         income2: {
+          id: 2,
           description: 'Weekend Job',
           amount: 200.02
         }
@@ -61,14 +68,17 @@ describe('constructor', function() {
     expect(user.income).to.deep.equal(
       {
         income1: {
+          id: 1,
           description: 'Full-Time Job',
           amount: 2115.38
         },
         income2: {
+          id: 2,
           description: 'Weekend Job',
           amount: 200.02
         },
         income3: {
+          id: 3,
           description: 'Dog Walking',
           amount: 100.00
         }
@@ -80,14 +90,17 @@ describe('constructor', function() {
     expect(user.expenses).to.deep.equal(
       {
         expense1: {
+          id: 1,
           description: 'Rent',
           amount: 1509.25,
         },
         expense2: {
+          id: 2,
           description: 'Utilities',
           amount: 105.50
         },
         expense3: {
+          id: 3,
           description: 'Groceries',
           amount: 520.25
         }
@@ -97,18 +110,22 @@ describe('constructor', function() {
     expect(user.expenses).to.deep.equal(
       {
         expense1: {
+          id: 1,
           description: 'Rent',
           amount: 1509.25,
         },
         expense2: {
+          id: 2,
           description: 'Utilities',
           amount: 105.50
         },
         expense3: {
+          id: 3,
           description: 'Groceries',
           amount: 520.25
         },
         expense4: {
+          id: 4,
           description: 'Hair Cut',
           amount: 40.00
         }
@@ -123,10 +140,12 @@ describe('constructor', function() {
     expect(user.income).to.deep.equal(
       {
         income1: {
+          id: 1,
           description: 'Full-Time Job',
           amount: 2115.38
         },
         income2: {
+          id: 2,
           description: 'Weekend Job',
           amount: 200.02
         }
@@ -139,10 +158,12 @@ describe('constructor', function() {
     expect(user.income).to.deep.equal(
       {
         income1: {
+          id: 1,
           description: 'Full-Time Job',
           amount: 2115.38
         },
         income2: {
+          id: 2,
           description: 'Weekend Job',
           amount: 200.02
         }
@@ -156,14 +177,17 @@ describe('constructor', function() {
     expect(user.expenses).to.deep.equal(
       {
         expense1: {
+          id: 1,
           description: 'Rent',
           amount: 1509.25,
         },
         expense2: {
+          id: 2,
           description: 'Utilities',
           amount: 105.50
         },
         expense3: {
+          id: 3,
           description: 'Groceries',
           amount: 520.25
         }
@@ -176,14 +200,17 @@ describe('constructor', function() {
     expect(user.expenses).to.deep.equal(
       {
         expense1: {
+          id: 1,
           description: 'Rent',
           amount: 1509.25,
         },
         expense2: {
+          id: 2,
           description: 'Utilities',
           amount: 105.50
         },
         expense3: {
+          id: 3,
           description: 'Groceries',
           amount: 520.25
         }

@@ -44,27 +44,31 @@ const expenseAmount = document.querySelector('#expense-amount');
 const incomeSubmitBtn = document.querySelector('.add-property__income--btn');
 const expenseSubmitBtn = document.querySelector('.add-property__expense--btn');
 
-const colors = ['#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#3498db'];
+const incomeTable = document.querySelector('.income-list__table');
+const expenseTable = document.querySelector('.expense-list__table');
 
-welcomeText.textContent = `Welcome ${user.userName}`;
-budgetSection.insertAdjacentHTML('afterbegin', `
-  <p class='welcome__budget--text'>Your current budget:</p>
-  <p class='welcome__budget--total'>$${user.calculateTotalBudget()}</p>
-`);
-updatePieChart();
+// const colors = ['#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#3498db'];
+function populateData() {
 
-
-formSelectBtn.forEach(btn => {
-  btn.addEventListener('click', function() {
-    formSelectBtn.forEach(b => {
-      b.classList.remove('btn-sec__btn--selected');
+  welcomeText.textContent = `Welcome ${user.userName}`;
+  budgetSection.insertAdjacentHTML('afterbegin', `
+    <p class='welcome__budget--text'>Your current budget:</p>
+    <p class='welcome__budget--total'>$${user.calculateTotalBudget()}</p>
+    `);
+    // updatePieChart();
+    
+  formSelectBtn.forEach(btn => {
+    btn.addEventListener('click', function() {
+      formSelectBtn.forEach(b => {
+        b.classList.remove('btn-sec__btn--selected');
+      });
+      this.classList.add('btn-sec__btn--selected');
+      
+      const choice = btn.dataset.type;
+      displayFormSec(choice);
     });
-    this.classList.add('btn-sec__btn--selected');
-
-    const choice = btn.dataset.type;
-    displayFormSec(choice);
   });
-});
+}
 
 function displayFormSec(choice) {
   if (choice === 'income') {
@@ -82,7 +86,7 @@ incomeSubmitBtn.addEventListener('click', (e) => {
   user.addIncome(incomeDescription.value, amount);
   console.log(user.income);
   updateBudgetDisplay();
-  updatePieChart();
+  // updatePieChart();
 })
 
 expenseSubmitBtn.addEventListener('click', (e) => {
@@ -91,7 +95,7 @@ expenseSubmitBtn.addEventListener('click', (e) => {
   user.addExpense(expenseDescription.value, amount);
   console.log(user.expenses);
   updateBudgetDisplay();
-  updatePieChart();
+  // updatePieChart();
 })
 
 function updateBudgetDisplay() {
@@ -101,39 +105,63 @@ function updateBudgetDisplay() {
 }
 
 // Chart Logic
-function getExpensePercentages() {
-  const expenses = Object.values(user.expenses);
-  const total = expenses.reduce((acc, e) => {
-    return acc = acc + e;
-  }, 0);
+// function getExpensePercentages() {
+//   const expenses = Object.values(user.expenses);
+//   const total = expenses.reduce((acc, e) => {
+//     return acc = acc + e;
+//   }, 0);
 
-  return expenses.map(e => ({
-    description: e.description,
-    amount: e.amount,
-    percent: total === 0 ? 0 : (e.amount / total) * 100
-  }));
-}
+//   return expenses.map(e => ({
+//     description: e.description,
+//     amount: e.amount,
+//     percent: total === 0 ? 0 : (e.amount / total) * 100
+//   }));
+// }
 
-function updatePieChart() {
-  const sections = getExpensePercentages();
-  const chart = document.querySelector('.welcome__chart');
+// function updatePieChart() {
+//   console.log('HERE <><><>')
+//   const sections = getExpensePercentages();
+//   const chart = document.querySelector('.welcome__chart');
 
-  let gradient = 'conic-gradient(';
-  let currentStart = 0;
+//   let gradient = 'conic-gradient(';
+//   let currentStart = 0;
 
-  sections.forEach((sec, index) => {
-    const end = currentStart + sec.percent;
-    const color = colors[index % colors.length];
+//   sections.forEach((sec, index) => {
+//     const end = currentStart + sec.percent;
+//     const color = colors[index % colors.length];
 
-    gradient += `${color} ${currentStart}% ${end}%,`;
-    currentStart = end;
-  });
+//     gradient += `${color} ${currentStart}% ${end}%,`;
+//     currentStart = end;
+//   });
 
-  // remove last comma & close
-  gradient = gradient.slice(0, -1) + ')';
+//   // remove last comma & close
+//   gradient = gradient.slice(0, -1) + ')';
 
-  chart.style.background = gradient;
-}
-
+//   chart.style.background = gradient;
+// }
+const editBtn = document.querySelectorAll('.edit-btn');
+const deleteBtn = document.querySelectorAll('.delete-btn');
 // Table Logic
+const incomeVal = Object.values(user.income);
+incomeVal.forEach(income => {
+  incomeTable.insertAdjacentHTML('beforeend', `
+    <tr class='income-list__table--tr' id='${income.id}'>
+      <td class='income-list__table--td'>${income.description}</td>
+      <td class='income-list__table--td'>$${income.amount.toFixed(2)}</td>
+      <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
+    </tr>
+  `);
+})
 
+const expenseVal = Object.values(user.expenses);
+expenseVal.forEach(expense => {
+  expenseTable.insertAdjacentHTML('beforeend', `
+    <tr class='expense-list__table--tr' id='${expense.id}'>
+      <td class='expense-list__table--td'>${expense.description}</td>
+      <td class='expense-list__table--td'>$${expense.amount.toFixed(2)}</td>
+      <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
+    </tr>
+  `);
+})
+
+window.onload = populateData();

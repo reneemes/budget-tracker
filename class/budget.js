@@ -24,6 +24,7 @@ class Budget {
     let keyName = `income${incomeLength}`;
 
     this.income[keyName] = {
+      id: incomeLength,
       description: description,
       amount: amount
     };
@@ -38,10 +39,15 @@ class Budget {
     let keyName = `expense${expensesLength}`;
 
     this.expenses[keyName] = {
+      id: expensesLength,
       description: description,
       amount: amount
     };
     return this.expenses;
+  }
+
+  deleteIncome(income) {
+
   }
 
   #addUpIncome() {
@@ -59,5 +65,4 @@ class Budget {
   }
 }
 
-// module.exports = Budget;
 export default Budget;
