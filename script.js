@@ -51,7 +51,7 @@ budgetSection.insertAdjacentHTML('afterbegin', `
   <p class='welcome__budget--text'>Your current budget:</p>
   <p class='welcome__budget--total'>$${user.calculateTotalBudget()}</p>
 `);
-updateDoughnutChart();
+updatePieChart();
 
 
 formSelectBtn.forEach(btn => {
@@ -82,7 +82,7 @@ incomeSubmitBtn.addEventListener('click', (e) => {
   user.addIncome(incomeDescription.value, amount);
   console.log(user.income);
   updateBudgetDisplay();
-  updateDoughnutChart();
+  updatePieChart();
 })
 
 expenseSubmitBtn.addEventListener('click', (e) => {
@@ -91,7 +91,7 @@ expenseSubmitBtn.addEventListener('click', (e) => {
   user.addExpense(expenseDescription.value, amount);
   console.log(user.expenses);
   updateBudgetDisplay();
-  updateDoughnutChart();
+  updatePieChart();
 })
 
 function updateBudgetDisplay() {
@@ -100,11 +100,12 @@ function updateBudgetDisplay() {
   budgetEl.textContent = `$${total}`;
 }
 
-
 // Chart Logic
 function getExpensePercentages() {
   const expenses = Object.values(user.expenses);
-  const total = expenses.reduce((sum, e) => sum + e.amount, 0);
+  const total = expenses.reduce((acc, e) => {
+    return acc = acc + e;
+  }, 0);
 
   return expenses.map(e => ({
     description: e.description,
@@ -113,9 +114,7 @@ function getExpensePercentages() {
   }));
 }
 
-
-
-function updateDoughnutChart() {
+function updatePieChart() {
   const sections = getExpensePercentages();
   const chart = document.querySelector('.welcome__chart');
 
@@ -124,7 +123,7 @@ function updateDoughnutChart() {
 
   sections.forEach((sec, index) => {
     const end = currentStart + sec.percent;
-    const color = colors[index % colors.length]; // cycle colors
+    const color = colors[index % colors.length];
 
     gradient += `${color} ${currentStart}% ${end}%,`;
     currentStart = end;
@@ -135,3 +134,6 @@ function updateDoughnutChart() {
 
   chart.style.background = gradient;
 }
+
+// Table Logic
+

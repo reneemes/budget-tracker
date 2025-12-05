@@ -1,6 +1,4 @@
-// const { expect }  = require('chai');
 import { expect } from 'chai';
-// const Budget = require('../class/budget.js');
 import Budget from '../class/budget.js';
 
 describe('constructor', function() {
@@ -113,6 +111,81 @@ describe('constructor', function() {
         expense4: {
           description: 'Hair Cut',
           amount: 40.00
+        }
+      }
+    );
+  });
+
+  // Sad Path Tests:
+  // Income
+  it('sad path - handles a negative income amount', function() {
+    user.addIncome('negative amount', -100.00);
+    expect(user.income).to.deep.equal(
+      {
+        income1: {
+          description: 'Full-Time Job',
+          amount: 2115.38
+        },
+        income2: {
+          description: 'Weekend Job',
+          amount: 200.02
+        }
+      }
+    );
+  });
+
+  it('sad path - handles no income description', function() {
+    user.addIncome('', 100.00);
+    expect(user.income).to.deep.equal(
+      {
+        income1: {
+          description: 'Full-Time Job',
+          amount: 2115.38
+        },
+        income2: {
+          description: 'Weekend Job',
+          amount: 200.02
+        }
+      }
+    );
+  });
+
+  // Expenses
+  it('sad path - handles a negative expense amount', function() {
+    user.addExpense('negative amount', -100.00);
+    expect(user.expenses).to.deep.equal(
+      {
+        expense1: {
+          description: 'Rent',
+          amount: 1509.25,
+        },
+        expense2: {
+          description: 'Utilities',
+          amount: 105.50
+        },
+        expense3: {
+          description: 'Groceries',
+          amount: 520.25
+        }
+      }
+    );
+  });
+
+  it('sad path - handles no expense description', function() {
+    user.addExpense('', 100.00);
+    expect(user.expenses).to.deep.equal(
+      {
+        expense1: {
+          description: 'Rent',
+          amount: 1509.25,
+        },
+        expense2: {
+          description: 'Utilities',
+          amount: 105.50
+        },
+        expense3: {
+          description: 'Groceries',
+          amount: 520.25
         }
       }
     );
