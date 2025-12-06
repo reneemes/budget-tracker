@@ -1,7 +1,7 @@
 import Budget from './class/budget.js';
 
 const user = new Budget(
-  'Jane',
+  'Jane Doe',
   {
     income1: {
       id: 1,
@@ -49,8 +49,8 @@ const expenseAmount = document.querySelector('#expense-amount');
 const incomeSubmitBtn = document.querySelector('.add-property__income--btn');
 const expenseSubmitBtn = document.querySelector('.add-property__expense--btn');
 
-const incomeTable = document.querySelector('.income-list__table');
-const expenseTable = document.querySelector('.expense-list__table');
+const incomeTable = document.querySelector('.income-list__tb-body');
+const expenseTable = document.querySelector('.expense-list__tb-body');
 
 function populateData() {
   budgetSection.innerHTML = '';
@@ -116,9 +116,9 @@ function setupTableRows() {
   const incomeVal = Object.values(user.income);
   incomeVal.forEach(income => {
     incomeTable.insertAdjacentHTML('beforeend', `
-      <tr class='income-list__table--tr' id='${income.id}'>
-        <td class='income-list__table--td'>${income.description}</td>
-        <td class='income-list__table--td'>$${income.amount.toFixed(2)}</td>
+      <tr class='income-list__tb-body--tr' id='${income.id}'>
+        <td class='income-list__tb-body--td'>${income.description}</td>
+        <td class='income-list__tb-body--td'>$${income.amount.toFixed(2)}</td>
         <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
       </tr>
     `);
@@ -128,9 +128,9 @@ function setupTableRows() {
   expenseVal.forEach(expense => {
     console.log(expense)
     expenseTable.insertAdjacentHTML('beforeend', `
-      <tr class='expense-list__table--tr' id='${expense.id}'>
-        <td class='expense-list__table--td'>${expense.description}</td>
-        <td class='expense-list__table--td'>$${expense.amount.toFixed(2)}</td>
+      <tr class='expense-list__tb-body--tr' id='${expense.id}'>
+        <td class='expense-list__tb-body--td'>${expense.description}</td>
+        <td class='expense-list__tb-body--td'>$${expense.amount.toFixed(2)}</td>
         <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
       </tr>
     `);

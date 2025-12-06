@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/fdf00391bb.js" crossorigin="anonymous"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -20,9 +21,6 @@
       <h2 class="welcome__title"></h2>
       <div class="welcome__budget">
         <!-- Budget displayed here -->
-        <!-- <div class="welcome__chart"> -->
-          <!-- <div class="welcome__doughnut--inner"></div> -->
-        <!-- </div> -->
       </div>
     </section>
 
@@ -59,27 +57,40 @@
     <section class="income-list">
       <h2 class="income-list__title">Income</h2>
       <table class="income-list__table">
-        <tr class="income-list__table--tr">
-          <th class="income-list__table--description">Description</th>
-          <th class="income-list__table--amount" colspan="2">Amount</th>
-        </tr>
+        <thead class="income-list__tb-head">
+          <tr>
+            <th class="income-list__tb-head--des">Description</th>
+            <th class="income-list__tb-head--amount" colspan="2">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="income-list__tb-body"></tbody>
       </table>
     </section>
     <!-- Expense -->
     <section class="expense-list">
       <h2 class="expense-list__title">Expenses</h2>
       <table class="expense-list__table">
-        <tr>
-          <th>Description</th>
-          <th colspan="2">Amount</th>
-        </tr>
+        <thead class="expense-list__tb-head">
+          <tr>
+            <th class="expense-list__tb-head--des">Description</th>
+            <th class="expense-list__tb-head--amount" colspan="2">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="expense-list__tb-body"></tbody>
       </table>
     </section>
   </main>
 
   <footer class="footer">
-    <a href="#">Social Media Images Here...</a>
-    <p>Copyright</p>
+    <div class="footer__socials">
+      <a href="https://github.com/reneemes" aria-label="GitHub"><i class="fa-brands fa-github fa-2xl" style="color: #000"></i></a>
+      <a href="https://www.linkedin.com/in/reneemessersmith/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-2xl" style="color: #000"></i></a>
+    </div>
+    <p class="footer__trademark">Copyright © 2025 Bill Buddy</p>
+    <p class="footer__disclosure">
+      Bill Buddy is a project for educational purposes and is not a
+      real budget tracker.
+    </p>
   </footer>
   <script type="module" src="script.js"></script>
 </body>
