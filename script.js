@@ -4,24 +4,29 @@ const user = new Budget(
   'Jane',
   {
     income1: {
+      id: 1,
       description: 'Full-Time Job',
       amount: 2115.38
     },
     income2: {
+      id: 2,
       description: 'Weekend Job',
       amount: 200.02
     }
   },
   {
     expense1: {
+      id: 1,
       description: 'Rent',
       amount: 1509.25,
     },
     expense2: {
+      id: 2,
       description: 'Utilities',
       amount: 105.50
     },
     expense3: {
+      id: 3,
       description: 'Groceries',
       amount: 520.25
     }
@@ -47,15 +52,14 @@ const expenseSubmitBtn = document.querySelector('.add-property__expense--btn');
 const incomeTable = document.querySelector('.income-list__table');
 const expenseTable = document.querySelector('.expense-list__table');
 
-// const colors = ['#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#3498db'];
 function populateData() {
+  budgetSection.innerHTML = '';
 
   welcomeText.textContent = `Welcome ${user.userName}`;
   budgetSection.insertAdjacentHTML('afterbegin', `
     <p class='welcome__budget--text'>Your current budget:</p>
     <p class='welcome__budget--total'>$${user.calculateTotalBudget()}</p>
     `);
-    // updatePieChart();
     
   formSelectBtn.forEach(btn => {
     btn.addEventListener('click', function() {
@@ -86,7 +90,7 @@ incomeSubmitBtn.addEventListener('click', (e) => {
   user.addIncome(incomeDescription.value, amount);
   console.log(user.income);
   updateBudgetDisplay();
-  // updatePieChart();
+  setupTableRows();
 })
 
 expenseSubmitBtn.addEventListener('click', (e) => {
@@ -95,7 +99,7 @@ expenseSubmitBtn.addEventListener('click', (e) => {
   user.addExpense(expenseDescription.value, amount);
   console.log(user.expenses);
   updateBudgetDisplay();
-  // updatePieChart();
+  setupTableRows();
 })
 
 function updateBudgetDisplay() {
@@ -104,10 +108,11 @@ function updateBudgetDisplay() {
   budgetEl.textContent = `$${total}`;
 }
 
-const editBtn = document.querySelectorAll('.edit-btn');
-const deleteBtn = document.querySelectorAll('.delete-btn');
 // Table Logic
 function setupTableRows() {
+  incomeTable.innerHTML = '';
+  expenseTable.innerHTML = '';
+
   const incomeVal = Object.values(user.income);
   incomeVal.forEach(income => {
     incomeTable.insertAdjacentHTML('beforeend', `
@@ -121,6 +126,7 @@ function setupTableRows() {
 
   const expenseVal = Object.values(user.expenses);
   expenseVal.forEach(expense => {
+    console.log(expense)
     expenseTable.insertAdjacentHTML('beforeend', `
       <tr class='expense-list__table--tr' id='${expense.id}'>
         <td class='expense-list__table--td'>${expense.description}</td>
@@ -136,32 +142,88 @@ incomeTable.addEventListener('click', (e) => {
   if (e.target.classList.contains('edit-btn')) {
     const row = e.target.closest('tr');
     const id = row.id;
-    console.log('Edit income:', id);
-    user.editIncome(id, {});
+    editTableCell(row, id, 'income');
   }
 
   if (e.target.classList.contains('delete-btn')) {
     const row = e.target.closest('tr');
     const id = row.id;
-    console.log('Delete expense:', id);
+    row.remove();
+    user.deleteIncome(id);
   }
+
+  populateData();
 });
 
 expenseTable.addEventListener('click', (e) => {
   if (e.target.classList.contains('edit-btn')) {
     const row = e.target.closest('tr');
     const id = row.id;
-    console.log('Edit expense:', id);
-    user.editExpense(id, {})
+    editTableCell(row, id, 'expense');
   }
 
   if (e.target.classList.contains('delete-btn')) {
     const row = e.target.closest('tr');
     const id = row.id;
-    console.log('Delete expense:', id);
+    row.remove();
+    user.deleteExpense(id);
   }
+
+  populateData();
 });
 
+function editTableCell(tableRow, id, type) {
+  if (tableRow.classList.contains('editing')) return;
+  tableRow.classList.add('editing');
+
+  const [descriptionCell, amountCell] = tableRow.querySelectorAll('td');
+
+  const originalDescription = descriptionCell.textContent.trim();
+  const originalAmount = amountCell.textContent.replace('$', '').trim();
+
+  const inputDes = document.createElement('input');
+  const inputAmount = document.createElement('input');
+
+  inputDes.type = 'text';
+  inputAmount.type = 'text';
+  inputAmount.inputMode = 'decimal';
+
+  inputDes.value = originalDescription;
+  inputAmount.value = originalAmount;
+
+  descriptionCell.innerHTML = '';
+  descriptionCell.appendChild(inputDes);
+
+  amountCell.innerHTML = '';
+  amountCell.appendChild(inputAmount);
+
+  inputDes.focus();
+
+  function handleEnter(e) {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+
+      const data = {
+        description: inputDes.value,
+        amount: parseFloat(inputAmount.value)
+      }
+
+      if (type === 'income') {
+        user.editIncome(id, data);
+      } else if (type === 'expense') {
+        user.editExpense(id, data);
+      }
+      
+      descriptionCell.textContent = inputDes.value;
+      amountCell.textContent = `$${parseFloat(inputAmount.value).toFixed(2)}`;
+      tableRow.classList.remove('editing');
+      populateData();
+    }
+  }
+
+  inputDes.addEventListener('keydown', handleEnter);
+  inputAmount.addEventListener('keydown', handleEnter);
+}
 
 document.addEventListener('DOMContentLoaded', () => {
   populateData();

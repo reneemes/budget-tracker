@@ -133,7 +133,7 @@ describe('constructor', function() {
     );
   });
 
-  it('should edit and existing income', function() {
+  it('should edit an existing income', function() {
     user.editIncome(2, {description: 'Dog Sitting'});
     expect(user.income).to.deep.equal(
       {
@@ -151,7 +151,7 @@ describe('constructor', function() {
     )
   });
 
-  it('should edit and existing expense', function() {
+  it('should edit an existing expense', function() {
     user.editExpense(1, {amount: 1410.25});
     expect(user.expenses).to.deep.equal(
       {
@@ -164,6 +164,37 @@ describe('constructor', function() {
           id: 2,
           description: 'Utilities',
           amount: 105.50
+        },
+        expense3: {
+          id: 3,
+          description: 'Groceries',
+          amount: 520.25
+        }
+      }
+    )
+  });
+
+  it('should delete an existing income', function() {
+    user.deleteIncome(2);
+    expect(user.income).to.deep.equal(
+      {
+        income1: {
+          id: 1,
+          description: 'Full-Time Job',
+          amount: 2115.38
+        }
+      }
+    )
+  });
+
+  it('should delete an existing expense', function() {
+    user.deleteExpense(2);
+    expect(user.expenses).to.deep.equal(
+      {
+        expense1: {
+          id: 1,
+          description: 'Rent',
+          amount: 1509.25,
         },
         expense3: {
           id: 3,

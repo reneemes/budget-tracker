@@ -175,6 +175,14 @@ main {
       background-color: $secondary-color;
     }
 
+    input {
+      border: 1px solid $primary-color;
+      border-radius: 8px;
+      padding: 5px;
+      font-size: 1rem;
+      width: 80%;
+    }
+
     .edit-btn,
     .delete-btn {
       border: none;

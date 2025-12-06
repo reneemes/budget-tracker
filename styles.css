@@ -157,6 +157,14 @@ main {
 .expense-list__table tr:hover {
   background-color: #a8dadc;
 }
+.income-list__table input,
+.expense-list__table input {
+  border: 1px solid #6A9EBE;
+  border-radius: 8px;
+  padding: 5px;
+  font-size: 1rem;
+  width: 80%;
+}
 .income-list__table .edit-btn,
 .income-list__table .delete-btn,
 .expense-list__table .edit-btn,

@@ -74,6 +74,14 @@ class Budget {
     }
   }
 
+  deleteIncome(id) {
+    delete this.income[`income${id}`];
+  }
+
+  deleteExpense(id) {
+    delete this.expenses[`expense${id}`];
+  }
+
   #addUpIncome() {
     let incomeTotal = Object.values(this.income).reduce((acc, val) => {
       return acc = acc + val.amount;
@@ -87,6 +95,7 @@ class Budget {
     }, 0);
     this.totalExpenses = expenseTotal;
   }
+
 }
 
 export default Budget;
