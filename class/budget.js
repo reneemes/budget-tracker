@@ -17,10 +17,14 @@ class Budget {
   }
 
   addIncome(description, amount) {
+    if (amount <= 0) {return 'Cannot add a negative amount'};
+    if (description == '') {return 'Income description cannot be blank'};
+
     let incomeLength = Object.keys(this.income).length + 1
     let keyName = `income${incomeLength}`;
 
     this.income[keyName] = {
+      id: incomeLength,
       description: description,
       amount: amount
     };
@@ -28,14 +32,54 @@ class Budget {
   }
 
   addExpense(description, amount) {
+    if (amount <= 0) {return 'Cannot add a negative amount'};
+    if (description == '') {return 'Income description cannot be blank'};
+
     let expensesLength = Object.keys(this.expenses).length + 1
     let keyName = `expense${expensesLength}`;
 
     this.expenses[keyName] = {
+      id: expensesLength,
       description: description,
       amount: amount
     };
     return this.expenses;
+  }
+
+  editIncome(id, {description = null, amount = null} = {}) {
+    let x = this.income[`income${id}`];
+    if (description && amount) {
+      x.description = description;
+      x.amount = amount;
+    } else if (description) {
+      x.description = description;
+    } else if (amount) {
+      x.amount = amount;
+    } else {
+      return 'No Change';
+    }
+  }
+
+  editExpense(id, {description = null, amount = null} = {}) {
+    let x = this.expenses[`expense${id}`];
+    if (description && amount) {
+      x.description = description;
+      x.amount = amount;
+    } else if (description) {
+      x.description = description;
+    } else if (amount) {
+      x.amount = amount;
+    } else {
+      return 'No Change';
+    }
+  }
+
+  deleteIncome(id) {
+    delete this.income[`income${id}`];
+  }
+
+  deleteExpense(id) {
+    delete this.expenses[`expense${id}`];
   }
 
   #addUpIncome() {
@@ -51,6 +95,7 @@ class Budget {
     }, 0);
     this.totalExpenses = expenseTotal;
   }
+
 }
 
-module.exports = Budget;
+export default Budget;

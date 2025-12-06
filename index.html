@@ -3,9 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <script src="https://kit.fontawesome.com/fdf00391bb.js" crossorigin="anonymous"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <title>Bill Buddy</title>
 </head>
 <body>
-  <script type="module" src="budget.js"></script>
+  <header class="header">
+    <h1 class="header__title">Bill Buddy</h1>
+    <p class="header__subtitle">A Budget Tracking App</p>
+  </header>
+
+  <main class="main">
+    <section class="welcome">
+      <h2 class="welcome__title"></h2>
+      <div class="welcome__budget">
+        <!-- Budget displayed here -->
+      </div>
+    </section>
+
+    <section class="add-property">
+      <h2 class="add-property--title">Add Income or Expense</h2>
+      <form class="add-property--form" action="" method="post">
+        
+        <div class="btn-sec">
+          <button type="button" class="btn-sec__btn" data-type="income">Add Income</button>
+          <button type="button" class="btn-sec__btn btn-sec__btn--selected" data-type="expense">Add Expense</button>
+        </div>
+        <hr>
+        <div class="add-property__income hidden">
+          <!-- Add income here -->
+           <h3 class="add-property__income--title">Enter a New Income</h3>
+           <label for="income-description">Description:</label>
+           <input type="text" name="income-description" id="income-description" />
+           <label for="income-amount">Bi-Weekly Income Amount:</label>
+           <input type="number" name="income-amount" id="income-amount" />
+           <button type="submit" class="add-property__income--btn">Submit</button>
+        </div>
+        <div class="add-property__expense">
+          <!-- Add expense here -->
+           <h3 class="add-property__income--title">Enter a New Expense</h3>
+           <label for="expense-description">Description:</label>
+           <input type="text" name="expense-description" id="expense-description" />
+           <label for="expense-amount">Monthly Expense Amount:</label>
+           <input type="number" name="expense-amount" id="expense-amount" />
+           <button type="submit" class="add-property__expense--btn">Submit</button>
+        </div>
+      </form>
+    </section>
+    <!-- Income -->
+    <section class="income-list">
+      <h2 class="income-list__title">Income</h2>
+      <table class="income-list__table">
+        <thead class="income-list__tb-head">
+          <tr>
+            <th class="income-list__tb-head--des">Description</th>
+            <th class="income-list__tb-head--amount" colspan="2">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="income-list__tb-body"></tbody>
+      </table>
+    </section>
+    <!-- Expense -->
+    <section class="expense-list">
+      <h2 class="expense-list__title">Expenses</h2>
+      <table class="expense-list__table">
+        <thead class="expense-list__tb-head">
+          <tr>
+            <th class="expense-list__tb-head--des">Description</th>
+            <th class="expense-list__tb-head--amount" colspan="2">Amount</th>
+          </tr>
+        </thead>
+        <tbody class="expense-list__tb-body"></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__socials">
+      <a href="https://github.com/reneemes" aria-label="GitHub"><i class="fa-brands fa-github fa-2xl" style="color: #000"></i></a>
+      <a href="https://www.linkedin.com/in/reneemessersmith/" aria-label="LinkedIn"><i class="fa-brands fa-linkedin fa-2xl" style="color: #000"></i></a>
+    </div>
+    <p class="footer__trademark">Copyright © 2025 Bill Buddy</p>
+    <p class="footer__disclosure">
+      Bill Buddy is a project for educational purposes and is not a
+      real budget tracker.
+    </p>
+  </footer>
+  <script type="module" src="script.js"></script>
 </body>
 </html>
