@@ -38,8 +38,8 @@
            <h3 class="add-property__income--title">Enter a New Income</h3>
            <label for="income-description">Description:</label>
            <input type="text" name="income-description" id="income-description" />
-           <label for="income-amount">Bi-Weekly Income Amount:</label>
-           <input type="number" name="income-amount" id="income-amount" />
+           <label for="income-amount">Amount:</label>
+           <input type="number" min="0" name="income-amount" id="income-amount" />
            <button type="submit" class="add-property__income--btn">Submit</button>
         </div>
         <div class="add-property__expense">
@@ -47,8 +47,8 @@
            <h3 class="add-property__income--title">Enter a New Expense</h3>
            <label for="expense-description">Description:</label>
            <input type="text" name="expense-description" id="expense-description" />
-           <label for="expense-amount">Monthly Expense Amount:</label>
-           <input type="number" name="expense-amount" id="expense-amount" />
+           <label for="expense-amount">Amount:</label>
+           <input type="number" min="0" name="expense-amount" id="expense-amount" />
            <button type="submit" class="add-property__expense--btn">Submit</button>
         </div>
       </form>

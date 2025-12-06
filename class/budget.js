@@ -86,7 +86,7 @@ class Budget {
     let incomeTotal = Object.values(this.income).reduce((acc, val) => {
       return acc = acc + val.amount;
     }, 0);
-    this.totalIncome = incomeTotal * 2;
+    this.totalIncome = incomeTotal;
   }
 
   #addUpExpenses() {

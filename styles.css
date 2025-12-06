@@ -9,6 +9,10 @@ body {
 
 main {
   background-image: linear-gradient(to bottom right, #a8dadc, white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
 }
 
 .header {
@@ -56,6 +60,9 @@ main {
   align-items: center;
   margin: 20px 0;
   background-color: whitesmoke;
+  width: 100%;
+  max-width: 712px;
+  border-radius: 10px;
 }
 .add-property--form {
   display: flex;
@@ -123,6 +130,7 @@ main {
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 712px;
 }
 .income-list__title,
 .expense-list__title {
@@ -154,13 +162,13 @@ main {
   font-size: 1rem;
   padding: 10px;
 }
-.income-list__tb-body--tr:hover,
-.expense-list__tb-body--tr:hover {
-  background-color: #a8dadc;
-}
 .income-list__tb-body tr:nth-child(odd),
 .expense-list__tb-body tr:nth-child(odd) {
   background-color: #dfeaea;
+}
+.income-list__tb-body tr:hover,
+.expense-list__tb-body tr:hover {
+  background-color: #a8dadc;
 }
 .income-list input,
 .expense-list input {
@@ -170,10 +178,13 @@ main {
   font-size: 1rem;
   width: 80%;
 }
-.income-list .edit-btn,
-.income-list .delete-btn,
-.expense-list .edit-btn,
-.expense-list .delete-btn {
+
+.action-btns {
+  text-align: right;
+  padding-right: 5px;
+}
+.action-btns .edit-btn,
+.action-btns .delete-btn {
   border: none;
   border-radius: 8px;
   background-color: #A0D4A6;
@@ -182,8 +193,7 @@ main {
   font-family: "Montserrat Alternates", sans-serif;
   cursor: pointer;
 }
-.income-list .delete-btn,
-.expense-list .delete-btn {
+.action-btns .delete-btn {
   background-color: #ED6E78;
 }
 
@@ -211,4 +221,16 @@ main {
 
 .hidden {
   display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    align-items: flex-start;
+  }
+  .header__title, .header__subtitle {
+    margin: 10px 20px;
+  }
+  .header__subtitle {
+    margin-top: 0;
+  }
 }/*# sourceMappingURL=styles.css.map */

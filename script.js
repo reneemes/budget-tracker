@@ -6,12 +6,12 @@ const user = new Budget(
     income1: {
       id: 1,
       description: 'Full-Time Job',
-      amount: 2115.38
+      amount: 4230.76
     },
     income2: {
       id: 2,
       description: 'Weekend Job',
-      amount: 200.02
+      amount: 400.04
     }
   },
   {
@@ -52,12 +52,20 @@ const expenseSubmitBtn = document.querySelector('.add-property__expense--btn');
 const incomeTable = document.querySelector('.income-list__tb-body');
 const expenseTable = document.querySelector('.expense-list__tb-body');
 
+const today = new Date();
+const currentMonth = today.getMonth();
+
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+  'July', 'August', 'September', 'October', 'November', 'December'];
+const monthName = monthNames[currentMonth];
+
 function populateData() {
   budgetSection.innerHTML = '';
 
+
   welcomeText.textContent = `Welcome ${user.userName}`;
   budgetSection.insertAdjacentHTML('afterbegin', `
-    <p class='welcome__budget--text'>Your current budget:</p>
+    <p class='welcome__budget--text'>Your current budget for the month of ${monthName}:</p>
     <p class='welcome__budget--total'>$${user.calculateTotalBudget()}</p>
     `);
     
@@ -91,6 +99,8 @@ incomeSubmitBtn.addEventListener('click', (e) => {
   console.log(user.income);
   updateBudgetDisplay();
   setupTableRows();
+  incomeAmount.value = '';
+  incomeDescription.value = '';
 })
 
 expenseSubmitBtn.addEventListener('click', (e) => {
@@ -100,6 +110,8 @@ expenseSubmitBtn.addEventListener('click', (e) => {
   console.log(user.expenses);
   updateBudgetDisplay();
   setupTableRows();
+  expenseAmount.value = '';
+  expenseDescription.value = '';
 })
 
 function updateBudgetDisplay() {
@@ -119,7 +131,7 @@ function setupTableRows() {
       <tr class='income-list__tb-body--tr' id='${income.id}'>
         <td class='income-list__tb-body--td'>${income.description}</td>
         <td class='income-list__tb-body--td'>$${income.amount.toFixed(2)}</td>
-        <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
+        <td class='action-btns'><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
       </tr>
     `);
   })
@@ -131,7 +143,7 @@ function setupTableRows() {
       <tr class='expense-list__tb-body--tr' id='${expense.id}'>
         <td class='expense-list__tb-body--td'>${expense.description}</td>
         <td class='expense-list__tb-body--td'>$${expense.amount.toFixed(2)}</td>
-        <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
+        <td class='action-btns'><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
       </tr>
     `);
   })

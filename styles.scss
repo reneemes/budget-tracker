@@ -4,6 +4,8 @@ $secondary-color: #a8dadc;
 $light-blue: #dfeaea;
 $muted-red: #ED6E78;
 
+$font: "Montserrat Alternates", sans-serif;
+
 @mixin gradient {
   background-image: linear-gradient(
     to bottom right, $secondary-color, white
@@ -31,11 +33,13 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   min-height: 100vh;
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: $font;
 }
 
 main {
   @include gradient;
+  @include center-items;
+  height: 100%;
 }
 
 .header {
@@ -81,6 +85,9 @@ main {
   @include center-items;
   margin: 20px 0;
   background-color: whitesmoke;
+  width: 100%;
+  max-width: 712px;
+  border-radius: 10px;
 
   &--form {
     @include center-items;
@@ -142,6 +149,7 @@ main {
 .expense-list {
   @include center-items;
   width: 100%;
+  max-width: 712px;
 
   &__title {
     font-size: 2rem;
@@ -172,12 +180,12 @@ main {
       padding: 10px;
     }
     
-    &--tr:hover {
-      background-color: $secondary-color;
-    }
-
     tr:nth-child(odd) {
       background-color: $light-blue;
+    }
+
+    tr:hover {
+      background-color: $secondary-color;
     }
   }
 
@@ -189,7 +197,12 @@ main {
     font-size: 1rem;
     width: 80%;
   }
+}
 
+.action-btns {
+  text-align: right;
+  padding-right: 5px;
+  
   .edit-btn,
   .delete-btn {
     border: none;
@@ -197,15 +210,15 @@ main {
     background-color: $light-medium-green;
     padding: 5px;
     font-size: 1rem;
-    font-family: "Montserrat Alternates", sans-serif;
+    font-family: $font;
     cursor: pointer;
   }
-
+  
   .delete-btn {
     background-color: $muted-red;
   }
-  
 }
+  
 
 .expense-list {
   margin-bottom: 40px;
@@ -232,4 +245,23 @@ main {
 
 .hidden {
   display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .header {
+    align-items: flex-start;
+
+    &__title,
+    &__subtitle {
+      margin: 10px 20px;
+    }
+
+    &__subtitle {
+      margin-top: 0;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+
 }
