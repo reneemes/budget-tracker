@@ -18,7 +18,7 @@ class Budget {
 
   addIncome(description, amount) {
     if (description == '') {return 'Income description cannot be blank'};
-    if (amount <= 0) {return 'Amount cannot be blank or negative'};
+    if (amount <= 0) {return 'Amount cannot be zero or negative'};
 
     let incomeLength = Object.keys(this.income).length + 1
     let keyName = `income${incomeLength}`;
@@ -33,7 +33,7 @@ class Budget {
 
   addExpense(description, amount) {
     if (description == '') {return 'Expense description cannot be blank'};
-    if (amount <= 0) {return 'Amount cannot be blank or negative'};
+    if (amount <= 0) {return 'Amount cannot be zero or negative'};
 
     let expensesLength = Object.keys(this.expenses).length + 1
     let keyName = `expense${expensesLength}`;
@@ -48,30 +48,20 @@ class Budget {
 
   editIncome(id, {description = null, amount = null} = {}) {
     let x = this.income[`income${id}`];
-    if (description && amount) {
-      x.description = description;
-      x.amount = amount;
-    } else if (description) {
-      x.description = description;
-    } else if (amount) {
-      x.amount = amount;
-    } else {
-      return 'No Change';
-    }
+
+    if (description !== null) x.description = description;
+    if (amount !== null) x.amount = amount;
+    
+    return x;
   }
 
   editExpense(id, {description = null, amount = null} = {}) {
     let x = this.expenses[`expense${id}`];
-    if (description && amount) {
-      x.description = description;
-      x.amount = amount;
-    } else if (description) {
-      x.description = description;
-    } else if (amount) {
-      x.amount = amount;
-    } else {
-      return 'No Change';
-    }
+
+    if (description !== null) x.description = description;
+    if (amount !== null) x.amount = amount;
+    
+    return x;
   }
 
   deleteIncome(id) {
