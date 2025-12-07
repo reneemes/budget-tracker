@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import Budget from '../class/budget.js';
+import Budget from '../src/class/budget.js';
 
 describe('constructor', function() {
   let user;

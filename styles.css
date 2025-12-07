@@ -112,6 +112,12 @@ main {
   font-size: 1rem;
 }
 
+.income-error-message,
+.expense-error-message {
+  color: firebrick;
+  margin-top: 0;
+}
+
 .btn-sec__btn {
   border: none;
   border-radius: 10px;

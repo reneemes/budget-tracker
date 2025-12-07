@@ -137,6 +137,12 @@ main {
   }
 }
 
+.income-error-message,
+.expense-error-message {
+  color: firebrick;
+  margin-top: 0;
+}
+
 .btn-sec__btn {
   @include btn;
 

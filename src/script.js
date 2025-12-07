@@ -40,6 +40,9 @@ const welcomeText = document.querySelector('.welcome__title');
 const formSelectBtn = document.querySelectorAll('.btn-sec__btn');
 const budgetSection = document.querySelector('.welcome__budget');
 
+const incomeErrorMessage = document.querySelector('.income-error-message');
+const expenseErrorMessage = document.querySelector('.expense-error-message');
+
 const incomeDescription = document.querySelector('#income-description');
 const incomeAmount = document.querySelector('#income-amount');
 
@@ -94,20 +97,36 @@ function displayFormSec(choice) {
 
 incomeSubmitBtn.addEventListener('click', (e) => {
   e.preventDefault();
+
+  incomeErrorMessage.textContent = '';
+  
   let amount = Number(incomeAmount.value);
-  user.addIncome(incomeDescription.value, amount);
-  console.log(user.income);
+  let result = user.addIncome(incomeDescription.value, amount);
+
+  if (typeof result === 'string') {
+    incomeErrorMessage.textContent = result;
+    return;
+  }
+
   updateBudgetDisplay();
   setupTableRows();
+
   incomeAmount.value = '';
   incomeDescription.value = '';
 })
 
 expenseSubmitBtn.addEventListener('click', (e) => {
   e.preventDefault();
+
+  expenseErrorMessage.textContent = '';
+
   let amount = Number(expenseAmount.value);
-  user.addExpense(expenseDescription.value, amount);
-  console.log(user.expenses);
+  let result = user.addExpense(expenseDescription.value, amount);
+  
+  if (typeof result === 'string') {
+    expenseErrorMessage.textContent = result;
+  }
+
   updateBudgetDisplay();
   setupTableRows();
   expenseAmount.value = '';

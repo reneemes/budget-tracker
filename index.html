@@ -40,6 +40,7 @@
            <input type="text" name="income-description" id="income-description" />
            <label for="income-amount">Amount:</label>
            <input type="number" min="0" name="income-amount" id="income-amount" />
+           <p class=income-error-message"></p>
            <button type="submit" class="add-property__income--btn">Submit</button>
         </div>
         <div class="add-property__expense">
@@ -49,6 +50,7 @@
            <input type="text" name="expense-description" id="expense-description" />
            <label for="expense-amount">Amount:</label>
            <input type="number" min="0" name="expense-amount" id="expense-amount" />
+           <p class="expense-error-message"></p>
            <button type="submit" class="add-property__expense--btn">Submit</button>
         </div>
       </form>
@@ -92,6 +94,6 @@
       real budget tracker.
     </p>
   </footer>
-  <script type="module" src="script.js"></script>
+  <script type="module" src="./src/script.js"></script>
 </body>
 </html>
