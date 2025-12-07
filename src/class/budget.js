@@ -73,19 +73,16 @@ class Budget {
   }
 
   #addUpIncome() {
-    let incomeTotal = Object.values(this.income).reduce((acc, val) => {
+    this.totalIncome = Object.values(this.income).reduce((acc, val) => {
       return acc = acc + val.amount;
     }, 0);
-    this.totalIncome = incomeTotal;
   }
 
   #addUpExpenses() {
-    let expenseTotal = Object.values(this.expenses).reduce((acc, val) => {
+    this.totalExpenses = Object.values(this.expenses).reduce((acc, val) => {
       return acc = acc + val.amount;
     }, 0);
-    this.totalExpenses = expenseTotal;
   }
-
 }
 
 export default Budget;
