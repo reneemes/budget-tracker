@@ -6,12 +6,12 @@ const user = new Budget(
     income1: {
       id: 1,
       description: 'Full-Time Job',
-      amount: 2115.38
+      amount: 4230.76
     },
     income2: {
       id: 2,
       description: 'Weekend Job',
-      amount: 200.02
+      amount: 400.04
     }
   },
   {
@@ -40,6 +40,9 @@ const welcomeText = document.querySelector('.welcome__title');
 const formSelectBtn = document.querySelectorAll('.btn-sec__btn');
 const budgetSection = document.querySelector('.welcome__budget');
 
+const incomeErrorMessage = document.querySelector('.income-error-message');
+const expenseErrorMessage = document.querySelector('.expense-error-message');
+
 const incomeDescription = document.querySelector('#income-description');
 const incomeAmount = document.querySelector('#income-amount');
 
@@ -52,12 +55,20 @@ const expenseSubmitBtn = document.querySelector('.add-property__expense--btn');
 const incomeTable = document.querySelector('.income-list__tb-body');
 const expenseTable = document.querySelector('.expense-list__tb-body');
 
+const today = new Date();
+const currentMonth = today.getMonth();
+
+const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
+  'July', 'August', 'September', 'October', 'November', 'December'];
+const monthName = monthNames[currentMonth];
+
 function populateData() {
   budgetSection.innerHTML = '';
 
+
   welcomeText.textContent = `Welcome ${user.userName}`;
   budgetSection.insertAdjacentHTML('afterbegin', `
-    <p class='welcome__budget--text'>Your current budget:</p>
+    <p class='welcome__budget--text'>Your current budget for the month of ${monthName}:</p>
     <p class='welcome__budget--total'>$${user.calculateTotalBudget()}</p>
     `);
     
@@ -86,20 +97,40 @@ function displayFormSec(choice) {
 
 incomeSubmitBtn.addEventListener('click', (e) => {
   e.preventDefault();
+
+  incomeErrorMessage.textContent = '';
+  
   let amount = Number(incomeAmount.value);
-  user.addIncome(incomeDescription.value, amount);
-  console.log(user.income);
+  let result = user.addIncome(incomeDescription.value, amount);
+
+  if (typeof result === 'string') {
+    incomeErrorMessage.textContent = result;
+    return;
+  }
+
   updateBudgetDisplay();
   setupTableRows();
+
+  incomeAmount.value = '';
+  incomeDescription.value = '';
 })
 
 expenseSubmitBtn.addEventListener('click', (e) => {
   e.preventDefault();
+
+  expenseErrorMessage.textContent = '';
+
   let amount = Number(expenseAmount.value);
-  user.addExpense(expenseDescription.value, amount);
-  console.log(user.expenses);
+  let result = user.addExpense(expenseDescription.value, amount);
+  
+  if (typeof result === 'string') {
+    expenseErrorMessage.textContent = result;
+  }
+
   updateBudgetDisplay();
   setupTableRows();
+  expenseAmount.value = '';
+  expenseDescription.value = '';
 })
 
 function updateBudgetDisplay() {
@@ -119,7 +150,7 @@ function setupTableRows() {
       <tr class='income-list__tb-body--tr' id='${income.id}'>
         <td class='income-list__tb-body--td'>${income.description}</td>
         <td class='income-list__tb-body--td'>$${income.amount.toFixed(2)}</td>
-        <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
+        <td class='action-btns'><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
       </tr>
     `);
   })
@@ -131,7 +162,7 @@ function setupTableRows() {
       <tr class='expense-list__tb-body--tr' id='${expense.id}'>
         <td class='expense-list__tb-body--td'>${expense.description}</td>
         <td class='expense-list__tb-body--td'>$${expense.amount.toFixed(2)}</td>
-        <td><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
+        <td class='action-btns'><button class='edit-btn'>✎ Edit</button> <button class='delete-btn'>Delete</button></td>
       </tr>
     `);
   })

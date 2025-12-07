@@ -17,8 +17,8 @@ class Budget {
   }
 
   addIncome(description, amount) {
-    if (amount <= 0) {return 'Cannot add a negative amount'};
     if (description == '') {return 'Income description cannot be blank'};
+    if (amount <= 0) {return 'Amount cannot be blank or negative'};
 
     let incomeLength = Object.keys(this.income).length + 1
     let keyName = `income${incomeLength}`;
@@ -32,8 +32,8 @@ class Budget {
   }
 
   addExpense(description, amount) {
-    if (amount <= 0) {return 'Cannot add a negative amount'};
-    if (description == '') {return 'Income description cannot be blank'};
+    if (description == '') {return 'Expense description cannot be blank'};
+    if (amount <= 0) {return 'Amount cannot be blank or negative'};
 
     let expensesLength = Object.keys(this.expenses).length + 1
     let keyName = `expense${expensesLength}`;
@@ -86,7 +86,7 @@ class Budget {
     let incomeTotal = Object.values(this.income).reduce((acc, val) => {
       return acc = acc + val.amount;
     }, 0);
-    this.totalIncome = incomeTotal * 2;
+    this.totalIncome = incomeTotal;
   }
 
   #addUpExpenses() {
